@@ -295,7 +295,7 @@ def hadle_messages():
 @app.route('/setwh')
 def webhook():
     bot.remove_webhook()
-    bot.set_webhook(url='https://renatsiversk.herokuapp.com/webhook')
+    bot.set_webhook(url='https://renattopbot.herokuapp.com/webhook')
     return 'ok', 200
 
 
