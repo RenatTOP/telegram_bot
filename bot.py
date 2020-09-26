@@ -27,7 +27,7 @@ def initialization(message):
     user_name = message.from_user.first_name
     text = 'Вітаю {}, ви зареєструвалися, можете перейти до покупок командою /order'.format(
         user_name)
-    bot.send_message(user_id, user_name)
+    bot.send_message(user_id, text)
     db.add_user(user_id, text)
 
 
@@ -143,20 +143,21 @@ def make_order_keyboard(page_size, offset):
     return markup
 
 
-# @bot.message_handler(regexp='addproduct{}'.format(SECRET_KEY))
-# def add_new_product(message):
-#     new_prod = message.text
-#     for i in new_prod:
-#         if not i.isalpha() and i != ' ':
-#             new_prod = new_prod.replace(i, '')
-#     label = new_prod.split()[1].strip()
-#     amount = new_prod.split()[2].strip()
-#     about = new_prod.split()[3].strip()
-#     picture = new_prod.split()[4].strip()
-#     print(label, amount, about, picture)
-#     db.add_product(label, amount, about, picture)
-
-    # bot.send_message(chat_id, text)
+@bot.message_handler(regexp='addproduct'+(SECRET_KEY)+r"-\d{0,35}-\w{0,50}-\d{4,10}-\w{10,1024}-\w{0,1024}")
+def add_new_product(message):
+    # new_prod = message.text
+    # for i in new_prod:
+    #     if not i.isalpha() and i != ' ':
+    #         new_prod = new_prod.replace(i, '')
+    # label = new_prod.split()[1].strip()
+    # amount = new_prod.split()[2].strip()
+    # about = new_prod.split()[3].strip()
+    # picture = new_prod.split()[4].strip()
+    # print(label, amount, about, picture)
+    # db.add_product(label, amount, about, picture)
+    user_id = message.chat.id
+    text = "Работает"
+    bot.send_message(user_id, text)
 
 
 def clear_pressed(query):
