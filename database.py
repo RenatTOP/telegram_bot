@@ -3,7 +3,7 @@ import config
 
 
 class DBHandler:
-    def __init__(self, dialect, driver, user, password, host, dbname, port='3306'):
+    def __init__(self, dialect, driver, user, password, host, dbname, port='5432'):
         try:
             connection_string = dialect + "+" + driver + "://" + user + ":" + password \
                 + "@" + host + ":" + port + "/" + dbname

@@ -10,9 +10,9 @@ from flask import Flask, request, make_response
 app = Flask(__name__)
 
 bot = TeleBot(config['token'])
-db = database.DBHandler(dialect='', driver='',
+db = database.DBHandler(dialect=os.environ['DIALECT'], driver=os.environ['DRIVER'],
                         user=os.environ['USER'], password=os.environ['PASSWORD'],
-                        host=os.environ['HOST'], dbname='')
+                        host=os.environ['HOST'], dbname='das8ek7meriqs4')
 db.create_internal_tables()
 
 
