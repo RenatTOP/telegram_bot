@@ -156,7 +156,7 @@ def add_new_product(message):
     # print(label, amount, about, picture)
     # db.add_product(label, amount, about, picture)
     user_id = message.chat.id
-    text = "Работает"
+    text = r"-\d{0,35}-\w{0,50}-\d{4,10}-\w{10,1024}-\w{0,1024}"
     bot.send_message(user_id, text)
 
 
