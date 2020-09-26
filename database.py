@@ -3,9 +3,9 @@ import config
 
 
 class DBHandler:
-    def __init__(self, dialect, driver, user, password, host, dbname, port='5432'):
+    def __init__(self, dialect, user, password, host, dbname, port='5432'):
         try:
-            connection_string = dialect + "+" + driver + "://" + user + ":" + password \
+            connection_string = dialect + "://" + user + ":" + password \
                 + "@" + host + ":" + port + "/" + dbname
             print(connection_string)
             self.__conn = sa.create_engine(connection_string)
