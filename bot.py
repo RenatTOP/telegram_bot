@@ -149,11 +149,12 @@ def add_new_product(message):
     new_prod = message.text
     user_id = message.chat.id
     product = re.split(r"\. |\.\.\. ", new_prod),
-    label = product[0][1]
-    amount = int(product[0][2])
-    about = product[0][3]
-    picture = product[0][4]
-    db.add_product(label, amount, about, picture)
+    product_id = int(product[0][1])
+    label = product[0][2]
+    amount = int(product[0][3])
+    about = product[0][4]
+    picture = product[0][5]
+    db.add_product(product_id, label, amount, about, picture)
     text = "Товар {} додано у магазин".format(label)
     bot.send_message(user_id, text)
 

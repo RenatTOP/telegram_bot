@@ -41,13 +41,11 @@ class DBHandler:
         except Exception as ex:
             print(ex)
 
-    def add_product(self, label, amount, about, picture):
+    def add_product(self, product_id, label, amount, about, picture):
         self.__meta.reflect(bind=self.__conn)
         table = self.__meta.tables[config.tables_names['PRODUCTS_TABLE']]
-        stmt = sa.select(
-            [sa.text("1")]
-        ).where(table.c.label == label, table.c.amount == amount, table.c.about == about, table.c.picture_url == picture)
-        self.__conn.execute(stmt).fetchall()
+        stmt = table.insert((product_id, label, amount, about, picture))
+        self.__conn.execute(stmt)
 
     def get_products(self, page_size, offset):
         self.__meta.reflect(bind=self.__conn)
@@ -60,10 +58,8 @@ class DBHandler:
         self.__meta.reflect(bind=self.__conn)
         table = self.__meta.tables[config.tables_names['PRODUCTS_TABLE']]
         res = self.__conn.execute(
-
             sa.select([table.c.label, table.c.amount, table.c.about, table.c.picture_url]).where(
                 table.c.product_id == product_id)
-
         ).fetchall()
         return res
 
