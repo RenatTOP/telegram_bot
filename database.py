@@ -46,7 +46,7 @@ class DBHandler:
         table = self.__meta.tables[config.tables_names['PRODUCTS_TABLE']]
         stmt = sa.select(
             [sa.text("1")]
-        ).where(table.c.label == label, table.c.amount == amount, table.c.about == about, table.c.picture == picture)
+        ).where(table.c.label == label, table.c.amount == amount, table.c.about == about, table.c.picture_url == picture)
         self.__conn.execute(stmt).fetchall()
 
     def get_products(self, page_size, offset):
