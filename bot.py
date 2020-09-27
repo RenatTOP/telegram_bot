@@ -50,7 +50,7 @@ def set_about(message):
 def order(message):
     user_id = message.chat.id
     cart_text = make_cart_text(user_id)
-    text = "Ваша корзина: \n"
+    text = "Ваш кошик: \n"
     if len(cart_text) != 0:
         text += cart_text
     markup = make_order_keyboard(3, 0)
@@ -294,24 +294,27 @@ def payment_ok(message):
         chat_id=chat_id, text='Дякуємо за покупку. Ваша сума {} {}'.format(amount, currency))
 
 
-@app.route('/webhook', methods=['POST'])
-def hadle_messages():
-    bot.process_new_updates(
-        [types.Update.de_json(request.stream.read().decode("utf-8"))])
-    return 'ok', 200
+# @app.route('/webhook', methods=['POST'])
+# def hadle_messages():
+#     bot.process_new_updates(
+#         [types.Update.de_json(request.stream.read().decode("utf-8"))])
+#     return 'ok', 200
 
 
-@app.route('/setwh')
-def webhook():
-    bot.remove_webhook()
-    bot.set_webhook(url='https://renattopbot.herokuapp.com/webhook')
-    return 'ok', 200
+# @app.route('/setwh')
+# def webhook():
+#     bot.remove_webhook()
+#     bot.set_webhook(url='https://renattopbot.herokuapp.com/webhook')
+#     return 'ok', 200
 
 
-@app.route('/')
-def index():
-    return "Renat APP"
+# @app.route('/')
+# def index():
+#     return "Renat APP"
 
+
+# if __name__ == "__main__":
+#     app.run()
 
 if __name__ == "__main__":
-    app.run()
+    bot.infinity_polling()
