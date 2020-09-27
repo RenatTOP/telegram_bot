@@ -40,16 +40,14 @@ class DBHandler:
             self.__conn.execute(table.insert((chat_id, first_name)))
         except Exception as ex:
             print(ex)
-#
 
     def add_product(self, label, amount, about, picture):
         self.__meta.reflect(bind=self.__conn)
-        table = self.__meta.tables['products']
+        table = self.__meta.tables[config.tables_names['PRODUCTS_TABLE']]
         stmt = sa.select(
             [sa.text("1")]
         ).where(table.c.label == label, table.c.amount == amount, table.c.about == about, table.c.picture == picture)
         self.__conn.execute(stmt).fetchall()
-#
 
     def get_products(self, page_size, offset):
         self.__meta.reflect(bind=self.__conn)
