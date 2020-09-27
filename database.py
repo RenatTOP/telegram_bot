@@ -47,6 +47,12 @@ class DBHandler:
         stmt = table.insert((product_id, label, amount, about, picture))
         self.__conn.execute(stmt)
 
+    def del_product(self, product_id):
+        self.__meta.reflect(bind=self.__conn)
+        table = self.__meta.tables[config.tables_names['PRODUCTS_TABLE']]
+        stmt = table.delete().where(table.c.product_id == product_id)
+        self.__conn.execute(stmt)
+
     def get_products(self, page_size, offset):
         self.__meta.reflect(bind=self.__conn)
         table = self.__meta.tables[config.tables_names['PRODUCTS_TABLE']]

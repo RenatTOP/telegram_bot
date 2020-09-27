@@ -158,6 +158,16 @@ def add_new_product(message):
     text = "Товар {} додано у магазин".format(label)
     bot.send_message(user_id, text)
 
+@bot.message_handler(regexp='delproduct'+(SECRET_KEY)+r". \d{0,35}")
+def del_product(message):
+    new_prod = message.text
+    user_id = message.chat.id
+    product = re.split(r"\. |\.\.\. ", new_prod),
+    product_id = product[0][1]
+    db.del_product(product_id)
+    text = "Товар {} видалено із магазину".format(product_id)
+    bot.send_message(user_id, text)
+
 def clear_pressed(query):
     data = json.loads(query.data)
     return data.get('inf') == 'clear'
