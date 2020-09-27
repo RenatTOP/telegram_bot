@@ -294,27 +294,24 @@ def payment_ok(message):
         chat_id=chat_id, text='Дякуємо за покупку. Ваша сума {} {}'.format(amount, currency))
 
 
-# @app.route('/webhook', methods=['POST'])
-# def hadle_messages():
-#     bot.process_new_updates(
-#         [types.Update.de_json(request.stream.read().decode("utf-8"))])
-#     return 'ok', 200
+@app.route('/webhook', methods=['POST'])
+def hadle_messages():
+    bot.process_new_updates(
+        [types.Update.de_json(request.stream.read().decode("utf-8"))])
+    return 'ok', 200
 
 
-# @app.route('/setwh')
-# def webhook():
-#     bot.remove_webhook()
-#     bot.set_webhook(url='https://renattopbot.herokuapp.com/webhook')
-#     return 'ok', 200
+@app.route('/setwh')
+def webhook():
+    bot.remove_webhook()
+    bot.set_webhook(url='https://renattopbot.herokuapp.com/webhook')
+    return 'ok', 200
 
 
-# @app.route('/')
-# def index():
-#     return "Renat APP"
+@app.route('/')
+def index():
+    return "Renat APP"
 
-
-# if __name__ == "__main__":
-#     app.run()
 
 if __name__ == "__main__":
-    bot.infinity_polling()
+    app.run()
