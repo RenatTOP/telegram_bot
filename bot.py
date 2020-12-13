@@ -35,14 +35,14 @@ def initialization(message):
 @bot.message_handler(commands=['setdescription'])
 def set_description(message):
     user_id = message.chat.id
-    text = 'Бот для онлайн купівлі різних товарів'
+    text = 'Бот для онлайн кафе'
     bot.send_message(user_id, text)
 
 
 @bot.message_handler(commands=['setabout'])
 def set_about(message):
     user_id = message.chat.id
-    text = 'Фінальна робота в процесі навчання учня Олійника Рената Сергійовича'
+    text = 'Робота Олійника Рената'
     bot.send_message(user_id, text)
 
 
@@ -85,7 +85,6 @@ def swipe_page(query):
         print(offset is not None)
         if offset is not None:
             if offset == 'first_page':
-                print('first')
                 bot.answer_callback_query(
                     callback_query_id=query.id, text='Це перша сторінка')
                 return
@@ -96,7 +95,6 @@ def swipe_page(query):
             else:
                 keyboard = make_order_keyboard(3, offset)
                 cart_text = make_cart_text(user_id)
-                print(cart_text)
                 text = "Ваш кошик: \n"
                 if len(cart_text) != 0:
                     text += cart_text
